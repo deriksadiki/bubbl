@@ -80,7 +80,33 @@ export default Styles = StyleSheet.create({
         textAlign : 'center',
         justifyContent: 'center',
         alignItems : 'center'
+    },
+
+    btn2 :{
+        backgroundColor : '#009DFF',
+        height : height * 0.07,
+        width : width * 0.85,
+        textAlign : 'center',
+        justifyContent: 'center',
+        alignItems : 'center'
+    },
+
+    regbtn:{
+        // backgroundColor : '#009DFF',
+        height : height * 0.07,
+        width : width * 0.85,
+        textAlign : 'center',
+        marginLeft: width * 0.075,
+        justifyContent: 'center',
+        alignItems : 'center',
+        borderWidth: 1, 
+        borderTopColor : '#009DFF',
+        borderBottomColor : '#009DFF',
+        borderLeftColor : '#009DFF',
+        borderRightColor : '#009DFF',
+
     }
+
 
     
 })

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "284407945410",
+    "firebase_url": "https://bubbl-d09a9.firebaseio.com",
+    "project_id": "bubbl-d09a9",
+    "storage_bucket": "bubbl-d09a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284407945410:android:ae7043aa7e5a58fdb0c35b",
+        "android_client_info": {
+          "package_name": "com.bubbl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284407945410-f6bie6a6a0sb5jt075npqc62e6rqvvsu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_piq0N2lZiZMOs-rz5dvfTvp_xnjHlD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284407945410-f6bie6a6a0sb5jt075npqc62e6rqvvsu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
