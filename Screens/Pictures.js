@@ -1,8 +1,46 @@
 import React from 'react';
-import {Text, TouchableOpacity, View, StatusBar, TextInput } from 'react-native'
+import {Text, TouchableOpacity, View, StatusBar, TextInput, Alert } from 'react-native'
 import Styles from '../Components/Styles'
 
 export default class Pictures extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            make: '',
+            model : '',
+            year : '',
+            plate : '',
+            ownerPic : '',
+            ownerPlate : '',
+            ID : '',
+            owner: '',
+            Pictures: []
+        }
+    }
+
+    
+    componentDidMount(){
+        this.setState({
+            plate: this.props.route.params.plate,
+            make : this.props.route.params.make,
+            model : this.props.route.params.model,
+            year : this.props.route.params.year,
+            ownerPic : this.props.route.params.ownerPic,
+            ownerPlate : this.props.route.params.ownerPlate,
+            ID : this.props.route.params.ID,
+            owner: this.props.route.params.owner
+        })
+    }
+
+    addPictures(){
+        if (this.state.Pictures.length >=2){
+            this.props.navigation.navigate('Card',{pictures: this.state.Pictures, ID: this.state.ID, owner: this.state.owner, ownerPic: this.state.ownerPic, ownerPlate: this.state.ownerPlate,make:this.state.make, model:this.state.model, year: this.state.year, plate : this.state.year})
+        }else{
+            Alert.alert('','Please note that you have to add a minimum of 2 pictures before you can continue')
+        }
+    }
+
+
     render(){
         return(
             <View style={Styles.body}>
@@ -42,7 +80,7 @@ export default class Pictures extends React.Component{
             </View>
 
             <View style={Styles.buttons}>
-                <TouchableOpacity style={Styles.btn} onPress={()=>{this.addCar()}}>
+                <TouchableOpacity style={Styles.btn} onPress={()=>{this.addPictures()}}>
                     <Text style={Styles.btnText} >Confirm Listing</Text>
                 </TouchableOpacity>
             </View>

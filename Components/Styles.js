@@ -70,7 +70,10 @@ export default Styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems : 'center'
     },
-
+    img :{
+        height:  height * 0.14,
+        width: width * 0.42,
+    },
     bank :{
         marginTop: height * 0.04,
         fontSize: 16,
@@ -105,7 +108,9 @@ export default Styles = StyleSheet.create({
         borderLeftColor : '#009DFF',
         borderRightColor : '#009DFF',
 
-    }
+    },
+
+
 
 
     

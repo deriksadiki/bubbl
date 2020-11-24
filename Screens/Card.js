@@ -1,14 +1,59 @@
 import React from 'react';
 import {Text, TouchableOpacity, View, StatusBar, TextInput, Modal } from 'react-native'
 import Styles from '../Components/Styles'
+import Auth from '@react-native-firebase/auth'
+import database from '@react-native-firebase/database';
 
 export default class Card extends React.Component{
 
     constructor(){
         super()
         this.state = {
-            showModal : true
+            make: '',
+            model : '',
+            year : '',
+            plate : '',
+            ownerPic : '',
+            ownerPlate : '',
+            ID : '',
+            owner: '',
+            Pictures: [],
+            showModal : false
         }
+    }
+
+    componentDidMount(){
+        this.setState({
+            plate: this.props.route.params.plate,
+            make : this.props.route.params.make,
+            model : this.props.route.params.model,
+            year : this.props.route.params.year,
+            ownerPic : this.props.route.params.ownerPic,
+            ownerPlate : this.props.route.params.ownerPlate,
+            ID : this.props.route.params.ID,
+            owner: this.props.route.params.owner,
+            pictures: this.props.route.params.pictures
+        })
+    }
+
+    save(){
+        let user = Auth().currentUser;
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
+        database().ref('Vehicles/' + user.uid).push({
+            pictures: this.state.Pictures, 
+            ID: this.state.ID, 
+            owner: this.state.owner, 
+            ownerPic: this.state.ownerPic, 
+            ownerPlate: this.state.ownerPlate,
+            make:this.state.make, 
+            model:this.state.model, 
+            year: this.state.year, 
+            plate : this.state.year,
+            dateTime : dateTime
+        })
     }
 
     render(){
@@ -45,12 +90,12 @@ export default class Card extends React.Component{
                 </View>
 
             <View style={Styles.buttons}>
-                <TouchableOpacity style={Styles.btn} onPress={()=>{this.addCar()}}>
+                <TouchableOpacity style={Styles.btn} onPress={()=>{this.setState({showModal:true})}}>
                     <Text style={Styles.btnText} >Go Live</Text>
                 </TouchableOpacity>
             </View>
            
-           <Modal visible={this.state.showModal}  > 
+           <Modal visible={this.state.showModal} animationType="slide"  > 
             <View style={Styles.body}>
 
             <View style={Styles.header}>
@@ -68,7 +113,7 @@ export default class Card extends React.Component{
 
 
             <View style={Styles.buttons}>
-                <TouchableOpacity style={Styles.btn} onPress={()=>{this.addCar()}}>
+                <TouchableOpacity style={Styles.btn} onPress={()=>{this.setState({showModal:false},()=>{ this.props.navigation.popToTop()})}}>
                     <Text style={Styles.btnText} >Done</Text>
                 </TouchableOpacity>
             </View>

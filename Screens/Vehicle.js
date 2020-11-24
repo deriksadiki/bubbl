@@ -1,8 +1,27 @@
 import React from 'react';
-import {Text, TouchableOpacity, View, StatusBar, TextInput } from 'react-native'
+import {Text, TouchableOpacity, View, StatusBar, TextInput, Alert } from 'react-native'
 import Styles from '../Components/Styles'
 
 export default class Vehicle extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            make: '',
+            model : '',
+            year : '',
+            plate : ''
+        }
+    }
+
+
+    addVehicle(){
+        if (this.state.make != '' && this.state.model != '' && this.state.year != '' && this.state.plate){
+            this.props.navigation.navigate('Documents',  {make:this.state.make, model:this.state.model, year: this.state.year, plate : this.state.year })
+        }else{
+            Alert.alert('','Please enter your Vehicle details')
+        }
+    }
+
 
     render(){
         return(
@@ -18,14 +37,14 @@ export default class Vehicle extends React.Component{
             </View>
 
             <View style={{justifyContent:'center', alignContent:'center', alignItems:'center'}}>
-                <TextInput style={Styles.textInputs} placeholder="Vehicle Make (Toyota)" placeholderTextColor="black" />
-                <TextInput style={Styles.textInputs} placeholder="Vehicle Model (Hilux)" placeholderTextColor="black" />
-                <TextInput style={Styles.textInputs} placeholder="Model Year (2019)" placeholderTextColor="black" />
-                <TextInput style={Styles.textInputs} placeholder="Number Plate " placeholderTextColor="black" />
+                <TextInput style={Styles.textInputs} onChangeText={(text)=>{this.setState({make:text})}} placeholder="Vehicle Make (Toyota)" placeholderTextColor="black" />
+                <TextInput style={Styles.textInputs} onChangeText={(text)=>{this.setState({model:text})}} placeholder="Vehicle Model (Hilux)" placeholderTextColor="black" />
+                <TextInput style={Styles.textInputs} onChangeText={(text)=>{this.setState({year:text})}} placeholder="Model Year (2019)" placeholderTextColor="black" />
+                <TextInput style={Styles.textInputs} onChangeText={(text)=>{this.setState({plate:text})}} placeholder="Number Plate " placeholderTextColor="black" />
             </View>
 
             <View style={Styles.buttons}>
-                <TouchableOpacity style={Styles.btn} onPress={()=>{this.addCar()}}>
+                <TouchableOpacity style={Styles.btn} onPress={()=>{this.addVehicle()}}>
                     <Text style={Styles.btnText} >Continue</Text>
                 </TouchableOpacity>
             </View>

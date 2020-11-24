@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 const MainStack = () =>{
     return (
-      <Stack.Navigator mode="card" headerMode="modal" initialRouteName="Card"
+      <Stack.Navigator mode="card" headerMode="modal" initialRouteName="Documents"
       screenOptions={{
         ...TransitionPresets.SlideFromRightIOS }}>
         <Stack.Screen name="Card" component={Card} />
